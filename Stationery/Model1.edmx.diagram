@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f88095ab8bd84fa280faed98a9f622c1" Name="Diagram1" ZoomLevel="46">
+        <EntityTypeShape EntityType="practic7Model.Category" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="practic7Model.Manufacturer" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="practic7Model.Order" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="practic7Model.OrderProduct" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="practic7Model.OrderStatus" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="practic7Model.PickupPoint" Width="1.5" PointX="0.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="practic7Model.Product" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="practic7Model.Provider" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="practic7Model.Role" Width="1.5" PointX="5.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="practic7Model.sysdiagrams" Width="1.5" PointX="7.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="practic7Model.User" Width="1.5" PointX="8" PointY="7.5" IsExpanded="true" />
+        <AssociationConnector Association="practic7Model.FK_Product_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="practic7Model.FK_Product_Manufacturer" ManuallyRouted="false" />
+        <AssociationConnector Association="practic7Model.FK_Order_OrderStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="practic7Model.FK_Order_PickupPoint" ManuallyRouted="false" />
+        <AssociationConnector Association="practic7Model.FK_OrderProduct_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="practic7Model.FK_OrderProduct_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="practic7Model.FK_Product_Provider" ManuallyRouted="false" />
+        <AssociationConnector Association="practic7Model.FK__User__UserRole__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="practic7Model.FK_Order_User" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
