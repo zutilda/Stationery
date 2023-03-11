@@ -51,8 +51,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border Style="{StaticResource BorderStyle}">
-                        <Grid Height="150"  VerticalAlignment="Center"  Background="{Binding TextBrush}"  >
-
+                        <Grid Height="150"  VerticalAlignment="Center"  Background="{Binding Brush}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="300"/>
                                 <ColumnDefinition/>
@@ -69,21 +68,21 @@
                                 <Grid Grid.Row="0">
                                     <StackPanel>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="Название"/>
-                                            <TextBlock Name="product" Text="{Binding ProductName}" FontWeight="Bold"  Style="{StaticResource TextList}"></TextBlock>
+                                            <TextBlock Text="Название:"/>
+                                            <TextBlock Name="product" Text="{Binding ProductName}" FontWeight="Bold" Style="{StaticResource TextList}"></TextBlock>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="Описание"/>
+                                            <TextBlock Text="Описание:"/>
                                             <TextBlock Name="Description" Text="{Binding ProductDescription}" Style="{StaticResource TextList}"></TextBlock>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="Производитель"/>
+                                            <TextBlock Text="Производитель:"/>
                                             <TextBlock Name="Manufacturer" Text="{Binding Manufacturer.NameProductManufacturer}" Style="{StaticResource TextList}"></TextBlock>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="Цена:"/>
-                                            <TextBlock Name="Price" Text="{Binding price}" TextDecorations="Strikethrough" Style="{StaticResource TextList}"></TextBlock>
-                                            <TextBlock Name="Cost" Text="{Binding cost}" Style="{StaticResource TextList}"></TextBlock>
+                                            <TextBlock Name="Price" Text="{Binding price}" Style="{StaticResource TextList}"></TextBlock>
+                                            <TextBlock Name="Cost" Text="{Binding cost}" TextDecorations="Strikethrough" Style="{StaticResource TextList}"></TextBlock>
                                         </StackPanel>                                     
                                     </StackPanel>
                                 </Grid>

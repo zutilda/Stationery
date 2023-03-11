@@ -64,7 +64,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Authorization.xaml.cs">
+    <Compile Include="Page\Authorization.xaml.cs">
       <DependentUpon>Authorization.xaml</DependentUpon>
     </Compile>
     <Compile Include="Category.cs">
@@ -72,11 +72,11 @@
     </Compile>
     <Compile Include="Classes\ClassDBase.cs" />
     <Compile Include="Classes\ClassFrame.cs" />
-    <Compile Include="ClassProduct.cs" />
-    <Compile Include="Header.xaml.cs">
+    <Compile Include="Classes\ClassProduct.cs" />
+    <Compile Include="Page\Header.xaml.cs">
       <DependentUpon>Header.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ListViewProduct.xaml.cs">
+    <Compile Include="Page\ListViewProduct.xaml.cs">
       <DependentUpon>ListViewProduct.xaml</DependentUpon>
     </Compile>
     <Compile Include="Manufacturer.cs">
@@ -114,15 +114,15 @@
     <Compile Include="User.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Page Include="Authorization.xaml">
+    <Page Include="Page\Authorization.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Header.xaml">
+    <Page Include="Page\Header.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ListViewProduct.xaml">
+    <Page Include="Page\ListViewProduct.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -183,9 +183,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Page\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="image\icon.ico" />
     <Resource Include="image\logo.png" />

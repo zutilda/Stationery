@@ -20,18 +20,35 @@ namespace Stationery
     /// </summary>
     public partial class ListViewProduct : Page
     {
+        User user;
         public ListViewProduct()
         {
             InitializeComponent();
             ListService.ItemsSource = ClassDBase.DB.Product.ToList();
             Sorting.SelectedIndex = 0;
             Filtering.SelectedIndex = 0;
+            CountService.Text = ClassDBase.DB.Product.ToList().Count + "/" + ClassDBase.DB.Product.ToList().Count;
+        }
+        public ListViewProduct(User user)
+        {
+            InitializeComponent();
+            this.user = user;           
         }
         void Filter()
         {
             List<Product> products = new List<Product>();
             products = ClassDBase.DB.Product.ToList();
 
+            //Поиск по названию
+            if (!string.IsNullOrWhiteSpace(SearchName.Text))  // Проверка пустую запись и запись состоящую из пробелов
+            {
+                products = products.Where(x => x.ProductName.ToLower().Contains(SearchName.Text.ToLower())).ToList();
+                if (products.Count == 0)
+                {
+                    MessageBox.Show("Записей с таким названием нет");
+                    SearchName.Text = "";
+                }
+            }
             //Фильтрация по размеру скидки
             switch (Filtering.SelectedIndex)
             {
@@ -74,18 +91,17 @@ namespace Stationery
                     break;
             }
 
-            //Поиск по названию
-            if (!string.IsNullOrWhiteSpace(SearchName.Text))  // Проверка пустую запись и запись состоящую из пробелов
+           ListService.ItemsSource = products;
+            if (products.Count == 0)
             {
-                products = products.Where(x => x.ProductName.ToLower().Contains(SearchName.Text.ToLower())).ToList();
-
-            }
-            else
-            {
-                MessageBox.Show("Записей с таким названием нет");
+                MessageBox.Show("нет записей");
+                CountService.Text = ClassDBase.DB.Product.ToList().Count + "/" + ClassDBase.DB.Product.ToList().Count;
                 SearchName.Text = "";
-            }
+                Sorting.SelectedIndex = 0;
+                Filtering.SelectedIndex = 0;
 
+            }
+            CountService.Text = products.Count + "/" + ClassDBase.DB.Product.ToList().Count;
         }
         private void SearchName_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -120,20 +136,6 @@ namespace Stationery
             //}
 
         }
-
-        private void AddService_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void Update_Click(object sender, RoutedEventArgs e)
-        {
-            Button btn = (Button)sender;
-            int id = Convert.ToInt32(btn.Uid);
-            //Service service = DBase.DB.Service.FirstOrDefault(x => x.ID == id);
-            //ClassFrame.newFrame.Navigate(new AddPage(service));
-        }
-
         private void SingUp_Click(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
@@ -142,9 +144,5 @@ namespace Stationery
             //ClassFrame.newFrame.Navigate(new PageAddNote(service));
         }
 
-        private void Home_Click(object sender, RoutedEventArgs e)
-        {
-            ClassFrame.basicFrame.Navigate(new Authorization());
-        }
     }
 }
