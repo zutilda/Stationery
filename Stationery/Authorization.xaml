@@ -9,6 +9,8 @@
       Title="Authorization">
 
     <Grid>
-        
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button Grid.Column="0" Name="Entrance" Template="{StaticResource Button}" FontSize="16" Click="Entrance_Click" >Вход</Button>
+        </StackPanel>
     </Grid>
 </Page>

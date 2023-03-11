@@ -1,0 +1,22 @@
+﻿<Page x:Class="Stationery.Header"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Stationery"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Header">
+
+    <Grid>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <Image Height="70" Source="/image/logo.png" ></Image>
+                <TextBlock VerticalAlignment="Center" Style="{StaticResource HeaderText}">Пиши-стирай</TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <Button Grid.Column="0" Name="Home" Template="{StaticResource Button}" FontSize="16"  Click="Home_Click">На главную</Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -27,6 +27,7 @@ namespace Stationery
             ClassDBase.DB = new Entities();
             ClassFrame.headFrame = Head;
             ClassFrame.basicFrame = Basic;
+            ClassFrame.headFrame.Navigate(new Header());
             ClassFrame.basicFrame.Navigate(new Authorization());
         }
     }

@@ -16,18 +16,18 @@ using System.Windows.Shapes;
 namespace Stationery
 {
     /// <summary>
-    /// Логика взаимодействия для Authorization.xaml
+    /// Логика взаимодействия для Header.xaml
     /// </summary>
-    public partial class Authorization : Page
+    public partial class Header : Page
     {
-        public Authorization()
+        public Header()
         {
             InitializeComponent();
         }
 
-        private void Entrance_Click(object sender, RoutedEventArgs e)
+        private void Home_Click(object sender, RoutedEventArgs e)
         {
-            ClassFrame.basicFrame.Navigate(new ListViewProduct());
+
         }
     }
 }
