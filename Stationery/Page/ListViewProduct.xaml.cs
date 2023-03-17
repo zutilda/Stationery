@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,18 +22,20 @@ namespace Stationery
     public partial class ListViewProduct : Page
     {
         User user;
+        
         public ListViewProduct()
         {
             InitializeComponent();
             ListService.ItemsSource = ClassDBase.DB.Product.ToList();
             Sorting.SelectedIndex = 0;
             Filtering.SelectedIndex = 0;
-            CountService.Text = ClassDBase.DB.Product.ToList().Count + "/" + ClassDBase.DB.Product.ToList().Count;
+            CountService.Text = ClassDBase.DB.Product.ToList().Count + "/" + ClassDBase.DB.Product.ToList().Count;           
         }
         public ListViewProduct(User user)
         {
             InitializeComponent();
-            this.user = user;           
+            this.user = user;
+            authUser.Text = user.UserSurname + " " + user.UserName + " " + user.UserPatronymic;
         }
         void Filter()
         {
@@ -118,31 +121,32 @@ namespace Stationery
             Filter();
         }
 
-        private void Delete_Click(object sender, RoutedEventArgs e)
+        private void btnDelete_Loaded(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
-            int id = Convert.ToInt32(btn.Uid);
-            //Service serv = DBase.DB.Service.FirstOrDefault(x => x.ID == id);
-            //List<ClientService> clientproducts = DBase.DB.ClientService.Where(x => x.ServiceID == serv.ID).ToList();
-            //if (clientproducts.Count > 0)
-            //{
-            //    MessageBox.Show("Данную услугу нельзя удалить");
-            //}
-            //else
-            //{
-            //    //DBase.DB.Service.Remove(serv);
-            //    //DBase.DB.SaveChanges();
-            //    //ClassFrame.newFrame.Navigate(new PageListOfService());
-            //}
+            if (user.UserRole == 2 || user.UserRole == 3)
+            {
+                btn.Visibility = Visibility.Visible;
+            }
 
-        }
-        private void SingUp_Click(object sender, RoutedEventArgs e)
+        }     
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            Button btn = (Button)sender;
-            int id = Convert.ToInt32(btn.Uid);
-            //Service service = DBase.DB.Service.FirstOrDefault(x => x.ID == id);
-            //ClassFrame.newFrame.Navigate(new PageAddNote(service));
+            MenuItem mi = (MenuItem)sender;
+            string index = mi.Uid;
+            Product product = ClassDBase.DB.Product.FirstOrDefault(x => x.ProductArticleNumber == index);
+            ClassDBase.products.Add(product);
+            //btnShowOrder.Visibility = Visibility.Visible;
         }
-
+        private void ShowOrders_Click(object sender, RoutedEventArgs e)
+        {
+            ShowOrder windowShowOrder = new ShowOrder();
+            windowShowOrder.ShowDialog();
+           
+            if (ClassDBase.products.Count == 0)
+            {
+                ShowOrders.Visibility = Visibility.Collapsed;
+            }
+        }
     }
 }

@@ -20,6 +20,7 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <TextBlock x:Name="Title" Text="Товары"  HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource HeaderText}"/>
+            <TextBlock x:Name="authUser" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5"/>
         </Grid>
         <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5">
             <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
@@ -52,6 +53,11 @@
                 <DataTemplate>
                     <Border Style="{StaticResource BorderStyle}">
                         <Grid Height="150"  VerticalAlignment="Center"  Background="{Binding Brush}">
+                            <Grid.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Добавить к заказу" Click="MenuItem_Click" Uid="{Binding ProductArticleNumber}"/>
+                                </ContextMenu>
+                            </Grid.ContextMenu>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="300"/>
                                 <ColumnDefinition/>
@@ -61,11 +67,7 @@
                                 <Image Width="100" Height="100" Source="{Binding ProductPhoto, TargetNullValue={StaticResource defaultImage}}"/>
                             </Grid>
                             <Grid Grid.Column="1">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition Height="40"/>
-                                </Grid.RowDefinitions>
-                                <Grid Grid.Row="0">
+                                <Grid>
                                     <StackPanel>
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="Название:"/>
@@ -86,11 +88,7 @@
                                         </StackPanel>                                     
                                     </StackPanel>
                                 </Grid>
-                                <Grid Grid.Row="1" >
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button Uid="{Binding ID}" Template="{StaticResource ButtonInElement}" Name="SingUp" Click="SingUp_Click" Visibility="{Binding btn_admin}">Положить в корзину</Button>
-                                    </StackPanel>
-                                </Grid>
+                                
                             </Grid>
                             <Grid Grid.Column="2">
                                 <StackPanel Orientation="Horizontal">
@@ -102,8 +100,9 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>    
-        <StackPanel Grid.Row="4" VerticalAlignment="Center">
-            <TextBlock Name="CountService"></TextBlock>
+        <StackPanel Grid.Row="4" VerticalAlignment="Center" Orientation="Horizontal">
+            <TextBlock Name="CountService" Width="100"></TextBlock>
+            <Button x:Name="ShowOrders" Click="ShowOrders_Click" Template="{StaticResource ButtonInElement}">Перейтик  заказу</Button>
         </StackPanel>
     </Grid>
 </Page>

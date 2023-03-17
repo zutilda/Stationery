@@ -9,5 +9,6 @@ namespace Stationery
     internal class ClassDBase
     {
         public static Entities DB;
+        public static List<Product> products = new List<Product>();
     }
 }

@@ -12,17 +12,23 @@
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal" Margin="5">
                 <TextBlock Margin="0, 0, 10, 0">Логин</TextBlock>
-                <TextBox Name="Login" Width="200" Height="30" KeyDown="Login_KeyDown"></TextBox>
+                <TextBox Name="Login" Width="200" Height="30" >admin</TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5">
                 <TextBlock  >Пароль</TextBlock>
-                <PasswordBox Name="Password" Width="200" Height="30" KeyDown="Password_KeyDown"></PasswordBox>
+                <PasswordBox Name="Password" Width="200" Height="30" Password="admin"></PasswordBox>
             </StackPanel>
             <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Button Name="Entrance" Template="{StaticResource Button}" FontSize="16" Click="Entrance_Click" Uid="{Binding UserID}">Вход</Button>
                 <Button Name="EntranceGuest" Template="{StaticResource Button}" FontSize="16" Click="EntranceGuest_Click" >Гость</Button>
             </StackPanel>
-        </StackPanel>
-        
+            <StackPanel>
+                <TextBlock Name="Time" Height="40"/>
+            </StackPanel>
+            <StackPanel x:Name="CheckEntrance" Orientation="Vertical">                
+                <Canvas Name="Canvas" Width="250" Height="50" Background="LightGray" />
+                <TextBox Name="Captha" KeyDown="Captha_KeyDown"/>
+            </StackPanel>
+        </StackPanel>        
     </Grid>
 </Page>

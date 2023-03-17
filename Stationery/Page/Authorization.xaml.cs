@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Stationery
 {
@@ -20,84 +22,143 @@ namespace Stationery
     /// </summary>
     public partial class Authorization : Page
     {
+        private DispatcherTimer Timer;
+        private int time = 10;      
+        private string CAPTCHA;
         public Authorization()
         {
             InitializeComponent();
+
+            Timer = new DispatcherTimer();
+            Timer.Tick += new EventHandler(Timer_Tick);
+            Timer.Interval = new TimeSpan(0, 0, 1);
+
+            CheckEntrance.Visibility = Visibility.Collapsed;
         }
 
         private void Entrance_Click(object sender, RoutedEventArgs e)
         {
-            Button btn = (Button)sender;
-            int id = Convert.ToInt32(btn.Uid);
-            User user = ClassDBase.DB.User.FirstOrDefault(x => x.UserID == id);
-            ClassFrame.basicFrame.Navigate(new ListViewProduct(user));
-        }
-        private void Login_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
+            if (Login.Text == "" && Password.Password == "")
             {
-                if (Login.Text != "")
+                MessageBox.Show("Обязательные поля не заполнены");
+            }
+            else
+            {
+                User user = ClassDBase.DB.User.FirstOrDefault(x => x.UserLogin == Login.Text && x.UserPassword == Password.Password);
+                if (user == null)
                 {
-                    try
-                    {
-                        List<User> user = ClassDBase.DB.User.Where(x => x.UserLogin == Login.Text).ToList();
-                        if (user.Count != 0)
-                        {                            
-                            Password.Focus();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Логин не найден");
-                            return;
-                        }
-                    }
-                    catch (System.Exception)
-                    {
-                        MessageBox.Show("Что-то пошло не по плану");
-                        return;
-                    }
-
+                    MessageBox.Show("Вы ввели неверные данные!!!");
+                    Entrance.IsEnabled = false;
+                    GetCAPTHA();
+                    CheckEntrance.Visibility = Visibility.Visible;
                 }
                 else
                 {
-                    MessageBox.Show("Введите логин");
-                    return;
+                    ClassFrame.basicFrame.Navigate(new ListViewProduct(user));
                 }
             }
         }
-
-        private void Password_KeyDown(object sender, KeyEventArgs e)
+        public string GetCAPTHA() //создание капчи
         {
-            if (e.Key == Key.Enter)
+            Canvas.Children.Clear();
+            Random rand = new Random();
+
+            string result = "";
+            char c = '0';
+
+            for (int i = 0; i < 4; i++)
             {
-                if (Password.Password != "")
+                switch (rand.Next(0, 3))
                 {
-                    try
-                    {
-                        List<User> user = ClassDBase.DB.User.Where(x => x.UserLogin == Login.Text && x.UserPassword == Password.Password).ToList();
+                    case 0:
+                        c = (char)rand.Next(49, 58);
+                        break;
+                    case 1:
+                        c = (char)rand.Next(65, 91);
+                        break;
+                    case 2:
+                        c = (char)rand.Next(97, 123);
+                        break;
+                }
+                result += c;
 
-                        if (user.Count == 0)
-                        {
-                            MessageBox.Show("Неправильно введен пароль");
-                        }
-                      
-                    }
-                    catch (System.Exception)
-                    {
-                        MessageBox.Show("Что-то пошло не по плану");                       
-                    }
+                TextBlock tb = new TextBlock()
+                {
+                    Text = c.ToString(),
+                    Padding = new Thickness(i * 25 + 5, rand.Next(21), rand.Next(21), 10),
+                    FontSize = rand.Next(20, 26)
+                };
 
+                switch (rand.Next(0, 3))
+                {
+                    case 0:
+                        tb.FontStyle = FontStyles.Italic;
+                        break;
+                    case 1:
+                        tb.FontWeight = FontWeights.Bold;
+                        break;
+                    case 2:
+                        tb.FontStyle = FontStyles.Italic;
+                        tb.FontWeight = FontWeights.Bold;
+                        break;
+                }
+
+                Canvas.Children.Add(tb);
+            }
+
+            for (int i = 0; i < 15; i++)
+            {
+                Line line = new Line()
+                {
+                    X1 = rand.Next(251),
+                    Y1 = rand.Next(51),
+                    X2 = rand.Next(251),
+                    Y2 = rand.Next(51),
+                    Stroke = new SolidColorBrush(Color.FromRgb((byte)rand.Next(256), (byte)rand.Next(256), (byte)rand.Next(256)))
+                };
+                Canvas.Children.Add(line);
+            }
+            CAPTCHA = result;
+            return result;
+        }
+       
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            time--;
+            Time.Text = "Получить новый код можно будет через " + time + " с";
+
+            if (time == 0)
+            {
+                Timer.Stop();
+                Time.Text = "";
+                Entrance.IsEnabled = true;
+            }
+        }
+        private void Captha_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (Captha.Text.Length == 4)
+            {
+                if (Captha.Text.ToLower() == CAPTCHA.ToLower())
+                {
+                    Entrance.IsEnabled = true;
+                    CheckEntrance.Visibility=Visibility.Collapsed;
                 }
                 else
                 {
-                    MessageBox.Show("Введите пароль");                    
+                    Timer.Start();
+                    time = 10;
+                    Time.Text = "Получить новый код можно будет через " + time + " с";
+                    Login.Text = "";
+                    Password.Password = "";
+                    CheckEntrance.Visibility = Visibility.Collapsed;
                 }
             }
         }
-
         private void EntranceGuest_Click(object sender, RoutedEventArgs e)
         {
             ClassFrame.basicFrame.Navigate(new ListViewProduct());
         }
+
+       
     }
 }
