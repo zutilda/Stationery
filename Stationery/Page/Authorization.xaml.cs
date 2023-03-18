@@ -148,6 +148,7 @@ namespace Stationery
                 {
                     Entrance.IsEnabled = true;
                     CheckEntrance.Visibility=Visibility.Collapsed;
+                    Captha.Text = "";
                 }
                 else
                 {
