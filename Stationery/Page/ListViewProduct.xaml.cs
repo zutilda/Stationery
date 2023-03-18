@@ -136,7 +136,7 @@ namespace Stationery
                 btn.Visibility = Visibility.Visible;
             }
         }
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        private void Delete_Click(object sender, RoutedEventArgs e)
         {
             switch (MessageBox.Show("Подтвердите удаление", "", MessageBoxButton.YesNo))
             {
