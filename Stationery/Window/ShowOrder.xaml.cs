@@ -60,7 +60,7 @@ namespace Stationery
                 startAmount += (double)product.CostOrder;
             }
             discount = 100 - 100 * endAmount / startAmount;
-            ResultDiscount.Text = "Общая скидка: " + discount + "%";
+            ResultDiscount.Text = "Общая скидка: " + Math.Round(discount,1) + "%";
             ResultAmount.Text = "Общая стоимость: " + string.Format("{0:C2}", endAmount);
         }
         private void btnDelete_Click(object sender, RoutedEventArgs e)
