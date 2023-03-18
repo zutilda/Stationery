@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -55,7 +56,6 @@ namespace Stationery
                 if (product.Count == 0)
                 {
                     MessageBox.Show("Записей с таким названием нет");
-                    ListProduct.ItemsSource = ClassDBase.DB.Product.ToList();
                     SearchName.Text = "";
                 }
             }
@@ -128,15 +128,39 @@ namespace Stationery
             Filter();
         }
 
-        private void btnDelete_Loaded(object sender, RoutedEventArgs e)
+        private void Delete_Loaded(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
             if (user.UserRole == 2 || user.UserRole == 3)
             {
                 btn.Visibility = Visibility.Visible;
             }
+        }
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            switch (MessageBox.Show("Подтвердите удаление", "", MessageBoxButton.YesNo))
+            {
+                case MessageBoxResult.Yes:
+                    Button btn = (Button)sender;
+                    string index = btn.Uid;
 
-        }     
+                    List<OrderProduct> products = ClassDBase.DB.OrderProduct.Where(x => x.ProductArticleNumber == index).ToList();
+                    if (products.Count == 0)
+                    {
+                        Product prod = ClassDBase.DB.Product.FirstOrDefault(z => z.ProductArticleNumber == index);
+                        ClassDBase.DB.Product.Remove(prod);
+                        ClassDBase.DB.SaveChanges();
+                        ClassFrame.basicFrame.Navigate(new ListViewProduct(user));
+                    }
+                    else
+                    {
+                        MessageBox.Show("Удаление товара запрещено");
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             MenuItem mi = (MenuItem)sender;

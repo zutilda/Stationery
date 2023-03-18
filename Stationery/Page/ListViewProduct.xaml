@@ -87,13 +87,17 @@
                                             <TextBlock Name="Cost" Text="{Binding Cost}" TextDecorations="Strikethrough" Style="{StaticResource TextList}"></TextBlock>
                                         </StackPanel>                                     
                                     </StackPanel>
-                                </Grid>
-                                
+                                </Grid>                                
                             </Grid>
                             <Grid Grid.Column="2">
-                                <StackPanel Orientation="Horizontal">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                </Grid.RowDefinitions>
+                                <StackPanel Orientation="Horizontal" Grid.Row="0">
                                     <TextBlock Name="Discount" Text="{Binding Discount}" Style="{StaticResource TextList}"></TextBlock>
                                 </StackPanel>
+                                <Button Grid.Row="1" Name="Delete" Visibility="Collapsed" Content="Удалить" Click="Delete_Click" Uid="{Binding ProductArticleNumber}" Loaded="Delete_Loaded" Template="{StaticResource ButtonInElement}"/>
                             </Grid>
                         </Grid>
                     </Border>
