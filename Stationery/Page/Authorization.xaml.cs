@@ -47,7 +47,7 @@ namespace Stationery
                 User user = ClassDBase.DB.User.FirstOrDefault(x => x.UserLogin == Login.Text && x.UserPassword == Password.Password);
                 if (user == null)
                 {
-                    MessageBox.Show("Вы ввели неверные данные!!!");
+                    MessageBox.Show("Пользователя с таким логином и паролем не существует");
                     Entrance.IsEnabled = false;
                     GetCAPTHA();
                     CheckEntrance.Visibility = Visibility.Visible;
@@ -132,6 +132,7 @@ namespace Stationery
                 Timer.Stop();
                 Time.Text = "";
                 Entrance.IsEnabled = true;
+                Captha.Text = "";
             }
         }
         private void Captha_KeyDown(object sender, KeyEventArgs e)
@@ -151,6 +152,7 @@ namespace Stationery
                     Login.Text = "";
                     Password.Password = "";
                     CheckEntrance.Visibility = Visibility.Collapsed;
+                    Captha.Text = "";
                 }
             }
         }

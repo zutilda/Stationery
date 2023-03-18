@@ -9,7 +9,12 @@
       Title="Authorization">
 
     <Grid>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0"  Style="{StaticResource HeaderText}" Text="Авторизация" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal" Margin="5">
                 <TextBlock Margin="0, 0, 10, 0">Логин</TextBlock>
                 <TextBox Name="Login" Width="200" Height="30" >admin</TextBox>
@@ -25,9 +30,11 @@
             <StackPanel>
                 <TextBlock Name="Time" Height="40"/>
             </StackPanel>
-            <StackPanel x:Name="CheckEntrance" Orientation="Vertical">                
-                <Canvas Name="Canvas" Width="250" Height="50" Background="LightGray" />
+            <StackPanel x:Name="CheckEntrance" Orientation="Vertical">               
+                <Canvas Name="Canvas" Width="250" Height="50" Background="LightGray"/>
+                <TextBlock>Введите текст с картинки</TextBlock>
                 <TextBox Name="Captha" KeyDown="Captha_KeyDown"/>
+                <TextBlock>Нажмите Enter для продолжения</TextBlock>
             </StackPanel>
         </StackPanel>        
     </Grid>
