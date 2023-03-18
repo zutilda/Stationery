@@ -7,7 +7,7 @@ namespace TestProject2
     public class UnitTest1
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestListComparison()
         {
             TimeSpan[] startTimes = new TimeSpan[] { new TimeSpan(10,0,0),
             new TimeSpan(11,0,0),
@@ -49,7 +49,7 @@ namespace TestProject2
         }
 
         [TestMethod]
-        public void TestMethod2()
+        public void CheckListConsultationNotNull_1()
         {
             TimeSpan[] startTimes = new TimeSpan[] { new TimeSpan(10,0,0),
             new TimeSpan(11,0,0),
@@ -66,7 +66,7 @@ namespace TestProject2
         }
 
         [TestMethod]
-        public void TestMethod3()
+        public void CheckListConsultationNotNull_2()
         {
             TimeSpan[] startTimes = new TimeSpan[] { new TimeSpan(10,0,0),
             new TimeSpan(11,0,0),
@@ -83,7 +83,7 @@ namespace TestProject2
         }
 
         [TestMethod]
-        public void TestMethod4()
+        public void NumberListElementComparison_1()
         {
             TimeSpan[] startTimes = new TimeSpan[] { new TimeSpan(10,0,0),
             new TimeSpan(11,0,0),
@@ -100,7 +100,7 @@ namespace TestProject2
         }
 
         [TestMethod]
-        public void TestMethod5()
+        public void NumberListElementComparison_2()
         {
             TimeSpan[] startTimes = new TimeSpan[] { new TimeSpan(6,0,0),
             new TimeSpan(11,0,0),
@@ -111,11 +111,12 @@ namespace TestProject2
             TimeSpan beginWorkingTime = new(8, 0, 0);
             TimeSpan endWorkingTime = new(18, 0, 0);
             int consultationTime = 20;
-            string[] s = Calculations.AvailablePeriods(startTimes, durations, beginWorkingTime, endWorkingTime, consultationTime); Assert.IsTrue(s.Length == 26);
+            string[] s = Calculations.AvailablePeriods(startTimes, durations, beginWorkingTime, endWorkingTime, consultationTime); 
+            Assert.IsTrue(s.Length == 26);
         }
 
         [TestMethod]
-        public void TestMethod6()
+        public void DataTypeListIsInstanceOfType()
         {
             TimeSpan[] startTimes = new TimeSpan[] { new TimeSpan(6,0,0),
             new TimeSpan(11,0,0),
@@ -125,13 +126,12 @@ namespace TestProject2
             TimeSpan endWorkingTime = new(18, 0, 0);
             int consultationTime = 20;
             string[] s = Calculations.AvailablePeriods(startTimes, durations, beginWorkingTime, endWorkingTime, consultationTime);
-
             Assert.IsInstanceOfType(s, typeof(string[]));
         }
 
 
         [TestMethod]
-        public void TestMethod7()
+        public void ElementListIsNull()
         {
             TimeSpan[] startTimes = new TimeSpan[] { new TimeSpan(10,0,0),
             new TimeSpan(11,0,0),
@@ -143,12 +143,11 @@ namespace TestProject2
             TimeSpan endWorkingTime = new(8, 0, 0);
             int consultationTime = 30;
             string[] s = Calculations.AvailablePeriods(startTimes, durations, beginWorkingTime, endWorkingTime, consultationTime);
-
             Assert.IsNull(s);
         }
 
         [TestMethod]
-        public void TestMethod8()
+        public void ElementListIsNotNull_1()
         {
             TimeSpan[] startTimes = new TimeSpan[] { new TimeSpan(10,0,0),
             new TimeSpan(15,30,0),
@@ -158,12 +157,11 @@ namespace TestProject2
             TimeSpan endWorkingTime = new(19, 0, 0);
             int consultationTime = 20;
             string[] s = Calculations.AvailablePeriods(startTimes, durations, beginWorkingTime, endWorkingTime, consultationTime);
-
             Assert.IsNotNull(s);
         }
 
         [TestMethod]
-        public void TestMethod9()
+        public void ElementListIsNull_2()
         {
             TimeSpan[] startTimes = new TimeSpan[] { new TimeSpan(10,0,0),
             new TimeSpan(15,30,0),
@@ -177,7 +175,7 @@ namespace TestProject2
         }
 
         [TestMethod]
-        public void TestMethod10()
+        public void ElementListIsNull_3()
         {
             TimeSpan[] startTimes = new TimeSpan[] { new TimeSpan(10,0,0),
             new TimeSpan(11,39,0),
@@ -187,7 +185,6 @@ namespace TestProject2
             TimeSpan endWorkingTime = new(20, 0, 0);
             int consultationTime = 14;
             string[] s = Calculations.AvailablePeriods(startTimes, durations, beginWorkingTime, endWorkingTime, consultationTime);
-
             Assert.IsNotNull(s);
         }
     }
