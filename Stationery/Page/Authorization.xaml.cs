@@ -130,7 +130,7 @@ namespace Stationery
         private void Timer_Tick(object sender, EventArgs e)
         {
             time--;
-            Time.Text = "Получить новый код можно будет через " + time + " с";
+            Time.Text =  "Повторите попытку через " + time + " с";
 
             if (time == 0)
             {
@@ -154,7 +154,7 @@ namespace Stationery
                 {
                     Timer.Start();
                     time = 10;
-                    Time.Text = "Получить новый код можно будет через " + time + " с";
+                    Time.Text = "Повторите попытку через " + time + " с";
                     Login.Text = "";
                     Password.Password = "";
                     CheckEntrance.Visibility = Visibility.Collapsed;
