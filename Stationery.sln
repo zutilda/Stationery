@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stationery", "Stationery\Stationery.csproj", "{0D379444-6B3F-4689-8FEC-42CE9FBF6E47}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SF2022User{NN}Lib", "SF2022User{NN}Lib\SF2022User{NN}Lib.csproj", "{F881EEEE-2BB8-4D65-9FE5-F2896090444E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0D379444-6B3F-4689-8FEC-42CE9FBF6E47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0D379444-6B3F-4689-8FEC-42CE9FBF6E47}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0D379444-6B3F-4689-8FEC-42CE9FBF6E47}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0D379444-6B3F-4689-8FEC-42CE9FBF6E47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F881EEEE-2BB8-4D65-9FE5-F2896090444E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F881EEEE-2BB8-4D65-9FE5-F2896090444E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F881EEEE-2BB8-4D65-9FE5-F2896090444E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F881EEEE-2BB8-4D65-9FE5-F2896090444E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
