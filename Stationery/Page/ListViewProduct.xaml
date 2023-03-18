@@ -97,7 +97,7 @@
                                 <StackPanel Orientation="Horizontal" Grid.Row="0">
                                     <TextBlock Name="Discount" Text="{Binding Discount}" Style="{StaticResource TextList}"></TextBlock>
                                 </StackPanel>
-                                <Button Grid.Row="1" Name="Delete" Visibility="Collapsed" Content="Удалить" Click="Delete_Click" Uid="{Binding ProductArticleNumber}" Loaded="Delete_Loaded" Template="{StaticResource ButtonInElement}"/>
+                                <Button Grid.Row="1" Name="Delete" Visibility="Collapsed" Content="Удалить" Click="Delete_Click" Uid="{Binding ProductArticleNumber}" Template="{StaticResource ButtonInElement}"/>
                             </Grid>
                         </Grid>
                     </Border>

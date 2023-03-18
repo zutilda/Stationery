@@ -32,16 +32,7 @@ namespace Stationery
                 count = order.OrderID;
             }
             OrderNumber.Text = "Заказ " + (count + 1);
-            double startAmount = 0, discount, endAmount = 0;
-            foreach (Product product in ClassDBase.products)
-            {
-                endAmount += (double)product.PriceOrder;
-                startAmount += (double)product.CostOrder;
-            }
-            discount = 100 - 100 * endAmount / startAmount;
-            ResultDiscount.Text = "Общая скидка: " + discount + "%";
-            ResultAmount.Text = "Общая стоимость: " + string.Format("{0:C2}", endAmount);
-
+            AmountDiscount();
             List<PickupPoint> pickupPoints = ClassDBase.DB.PickupPoint.ToList();
             OrderPickupPoint.Items.Add("Выберите пункт выдачи");
             foreach (PickupPoint pickup in pickupPoints)
@@ -58,6 +49,19 @@ namespace Stationery
             {
                 FullName.Text = "Гость";
             }
+        }
+
+        private void AmountDiscount()
+        {
+            double startAmount = 0, discount, endAmount = 0;
+            foreach (Product product in ClassDBase.products)
+            {
+                endAmount += (double)product.PriceOrder;
+                startAmount += (double)product.CostOrder;
+            }
+            discount = 100 - 100 * endAmount / startAmount;
+            ResultDiscount.Text = "Общая скидка: " + discount + "%";
+            ResultAmount.Text = "Общая стоимость: " + string.Format("{0:C2}", endAmount);
         }
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
@@ -78,14 +82,13 @@ namespace Stationery
         private void Count_TextChanged(object sender, TextChangedEventArgs e)
         {
             TextBox tb = (TextBox)sender;
-            string index = tb.Uid;
+            string index = tb.Uid;  
             if (tb.Text == "0")
             {
                 Product product = ClassDBase.products.FirstOrDefault(z => z.ProductArticleNumber == index);
                 ClassDBase.products.Remove(product);
                 ListProduct.Items.Refresh();
-            }
-
+            }            
         }
 
         private void Buy_Click(object sender, RoutedEventArgs e)

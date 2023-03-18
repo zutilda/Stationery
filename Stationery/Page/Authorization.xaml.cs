@@ -22,6 +22,11 @@ namespace Stationery
     /// </summary>
     public partial class Authorization : Page
     {
+        /// <summary>
+        /// <param name="time">время работы таймера, блокирующего возможность нажатия на кнопки для повторной авторизации</param>
+        /// <param name="CAPTCHA">переменная хранит сгенерированное значение captcha</param>
+        /// </summary>
+
         private DispatcherTimer Timer;
         private int time = 10;      
         private string CAPTCHA;

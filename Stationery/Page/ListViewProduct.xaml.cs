@@ -32,6 +32,7 @@ namespace Stationery
             Filtering.SelectedIndex = 0;
             CountProduct.Text = ClassDBase.DB.Product.ToList().Count + "/" + ClassDBase.DB.Product.ToList().Count;  
             ShowOrders.Visibility= Visibility.Collapsed;
+          
         }
         public ListViewProduct(User user)
         {
@@ -126,15 +127,6 @@ namespace Stationery
         private void Sorting_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Filter();
-        }
-
-        private void Delete_Loaded(object sender, RoutedEventArgs e)
-        {
-            Button btn = (Button)sender;
-            if (user.UserRole == 2 || user.UserRole == 3)
-            {
-                btn.Visibility = Visibility.Visible;
-            }
         }
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
