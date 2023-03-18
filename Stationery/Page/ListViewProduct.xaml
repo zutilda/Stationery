@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Stationery"
       mc:Ignorable="d" 
-      d:MinHeight="450" d:MaxWidth="800"
+      d:MinHeight="450" d:MinWidth="800"
       Title="ListViewProduct">
     <Page.Resources>
         <BitmapImage x:Key="defaultImage" UriSource="/image/picture.png"/>
@@ -97,7 +97,7 @@
                                 <StackPanel Orientation="Horizontal" Grid.Row="0">
                                     <TextBlock Name="Discount" Text="{Binding Discount}" Style="{StaticResource TextList}"></TextBlock>
                                 </StackPanel>
-                                <Button Grid.Row="1" Name="Delete" Visibility="Collapsed" Content="Удалить" Click="Delete_Click" Uid="{Binding ProductArticleNumber}" Template="{StaticResource ButtonInElement}"/>
+                                <Button Grid.Row="1" x:Name="Delete" Content="Удалить" Loaded="Delete_Loaded" Click="Delete_Click" Uid="{Binding ProductArticleNumber}" Template="{StaticResource ButtonInElement}"/>
                             </Grid>
                         </Grid>
                     </Border>

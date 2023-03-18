@@ -30,7 +30,7 @@ namespace Stationery
             ListProduct.ItemsSource = ClassDBase.DB.Product.ToList();
             Sorting.SelectedIndex = 0;
             Filtering.SelectedIndex = 0;
-            CountProduct.Text = ClassDBase.DB.Product.ToList().Count + "/" + ClassDBase.DB.Product.ToList().Count;  
+            CountProduct.Text = ClassDBase.DB.Product.ToList().Count + "/" + ClassDBase.DB.Product.ToList().Count;             
             ShowOrders.Visibility= Visibility.Collapsed;
           
         }
@@ -44,6 +44,8 @@ namespace Stationery
             Filtering.SelectedIndex = 0;
             CountProduct.Text = ClassDBase.DB.Product.ToList().Count + "/" + ClassDBase.DB.Product.ToList().Count;
             ShowOrders.Visibility = Visibility.Collapsed;
+            
+               
         }
         void Filter()
         {
@@ -169,6 +171,23 @@ namespace Stationery
             if (ClassDBase.products.Count == 0)
             {
                 ShowOrders.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void Delete_Loaded(object sender, RoutedEventArgs e)
+        {
+            Button btn = (Button)sender;
+            if (user == null || user.UserRole == 1)
+            {
+                btn.Visibility = Visibility.Collapsed;
+            }
+            else if(user.UserRole == 2 || user.UserRole == 3)
+            {
+                btn.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                btn.Visibility = Visibility.Collapsed;
             }
         }
     }
