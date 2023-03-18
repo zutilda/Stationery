@@ -5,6 +5,8 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stationery", "Stationery\Stationery.csproj", "{0D379444-6B3F-4689-8FEC-42CE9FBF6E47}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SF2022User{NN}Lib", "SF2022User{NN}Lib\SF2022User{NN}Lib.csproj", "{FD0A0B7D-0B5E-4C5F-9DFE-E488F52C8022}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{0D379444-6B3F-4689-8FEC-42CE9FBF6E47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D379444-6B3F-4689-8FEC-42CE9FBF6E47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D379444-6B3F-4689-8FEC-42CE9FBF6E47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD0A0B7D-0B5E-4C5F-9DFE-E488F52C8022}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD0A0B7D-0B5E-4C5F-9DFE-E488F52C8022}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD0A0B7D-0B5E-4C5F-9DFE-E488F52C8022}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD0A0B7D-0B5E-4C5F-9DFE-E488F52C8022}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

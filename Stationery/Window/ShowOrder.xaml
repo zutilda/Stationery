@@ -5,12 +5,82 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Stationery"
         mc:Ignorable="d"
-        Title="Заказ" Height="450" Width="800">
+        Title="Заказ" Height="450" Width="800" Icon="/image/icon.ico">
+    <Window.Resources>
+        <BitmapImage x:Key="Pictures" UriSource="/image/picture.png"/>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="10*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Style="{StaticResource HeaderText}" Text="Состав заказа" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <StackPanel Orientation="Vertical" Grid.Row="1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <GroupBox Header="Заказчик" >
+                    <TextBlock x:Name="FullName" HorizontalAlignment="Center"/>
+                </GroupBox>
+                <GroupBox Header="Номер заказа" HorizontalAlignment="Center">
+                    <TextBlock x:Name="OrderNumber" HorizontalAlignment="Center"/>
+                </GroupBox>
+            </StackPanel>            
+            <GroupBox Header="Выберите пункт выдачи">
+                <ComboBox Name="OrderPickupPoint"/>
+            </GroupBox>
+        </StackPanel>
+        <ListView Grid.Row="2" Name="ListProduct" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Stretch">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel HorizontalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border Padding="5" CornerRadius="5" BorderBrush="Black">
+                        <Grid Background="{Binding Color}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Image Source="{Binding Photo, TargetNullValue={StaticResource Pictures}}" Width="80"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1">
+                                <TextBlock Text="{Binding ProductName}"/>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding ProductDescription}"/>
+                                <TextBlock Text="{Binding Manufacturer.NameProductManufacturer}"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Цена: "/>
+                                    <TextBlock Text="{Binding Cost}" TextDecorations="Strikethrough"/>
+                                    <TextBlock Text="{Binding Price}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Скидка: "/>
+                                    <TextBlock Text="{Binding Discount}"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal" >
+                                    <TextBlock Text="Количество: "/>
+                                    <TextBox Name="Count" Width="30" Text="1" Uid="{Binding ProductArticleNumber}" TextChanged="Count_TextChanged"/>
+                                </StackPanel>
+                                <Button Name="Delete" Content="Удалить" Click="btnDelete_Click" Uid="{Binding ProductArticleNumber}" Template="{StaticResource ButtonInElement}"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel Grid.Row="3">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Name="ResultAmount" Margin="0,0,10,0"/>
+                <TextBlock Name="ResultDiscount"/>
+            </StackPanel>
+            
+        </StackPanel>
+        <Button Grid.Row="4"  Name="Buy" Content="Заказать" Click="Buy_Click" Template="{StaticResource Button}" />
     </Grid>
 </Window>

@@ -26,29 +26,36 @@ namespace Stationery
         public ListViewProduct()
         {
             InitializeComponent();
-            ListService.ItemsSource = ClassDBase.DB.Product.ToList();
+            ListProduct.ItemsSource = ClassDBase.DB.Product.ToList();
             Sorting.SelectedIndex = 0;
             Filtering.SelectedIndex = 0;
-            CountService.Text = ClassDBase.DB.Product.ToList().Count + "/" + ClassDBase.DB.Product.ToList().Count;           
+            CountProduct.Text = ClassDBase.DB.Product.ToList().Count + "/" + ClassDBase.DB.Product.ToList().Count;  
+            ShowOrders.Visibility= Visibility.Collapsed;
         }
         public ListViewProduct(User user)
         {
             InitializeComponent();
+            ListProduct.ItemsSource = ClassDBase.DB.Product.ToList();
             this.user = user;
             authUser.Text = user.UserSurname + " " + user.UserName + " " + user.UserPatronymic;
+            Sorting.SelectedIndex = 0;
+            Filtering.SelectedIndex = 0;
+            CountProduct.Text = ClassDBase.DB.Product.ToList().Count + "/" + ClassDBase.DB.Product.ToList().Count;
+            ShowOrders.Visibility = Visibility.Collapsed;
         }
         void Filter()
         {
-            List<Product> products = new List<Product>();
-            products = ClassDBase.DB.Product.ToList();
+            List<Product> product = new List<Product>();
+            product = ClassDBase.DB.Product.ToList();
 
             //Поиск по названию
             if (!string.IsNullOrWhiteSpace(SearchName.Text))  // Проверка пустую запись и запись состоящую из пробелов
             {
-                products = products.Where(x => x.ProductName.ToLower().Contains(SearchName.Text.ToLower())).ToList();
-                if (products.Count == 0)
+                product = product.Where(x => x.ProductName.ToLower().Contains(SearchName.Text.ToLower())).ToList();
+                if (product.Count == 0)
                 {
                     MessageBox.Show("Записей с таким названием нет");
+                    ListProduct.ItemsSource = ClassDBase.DB.Product.ToList();
                     SearchName.Text = "";
                 }
             }
@@ -57,22 +64,22 @@ namespace Stationery
             {
                 case 0:
                     {
-                        products = products.ToList();
+                        product = product.ToList();
                     }
                     break;
                 case 1:
                     {
-                        products = products.Where(x => ((x.ProductDiscountAmount >= 0) && (x.ProductDiscountAmount < 10))).ToList();
+                        product = product.Where(x => ((x.ProductDiscountAmount >= 0) && (x.ProductDiscountAmount < 10))).ToList();
                     }
                     break;
                 case 2:
                     {
-                        products = products.Where(x => ((x.ProductDiscountAmount >= 10) && (x.ProductDiscountAmount < 15))).ToList();
+                        product = product.Where(x => ((x.ProductDiscountAmount >= 10) && (x.ProductDiscountAmount < 15))).ToList();
                     }
                     break;
                 case 3:
                     {
-                        products = products.Where(x => (x.ProductDiscountAmount>= 15)).ToList();
+                        product = product.Where(x => (x.ProductDiscountAmount>= 15)).ToList();
 
                     }
                     break;
@@ -83,28 +90,28 @@ namespace Stationery
             {
                 case 0:
                     {
-                        products.Sort((x, y) => x.ProductCost.CompareTo(y.ProductCost));
+                        product.Sort((x, y) => x.ProductCost.CompareTo(y.ProductCost));
                     }
                     break;
                 case 1:
                     {
-                        products.Sort((x, y) => x.ProductCost.CompareTo(y.ProductCost));
-                        products.Reverse();
+                        product.Sort((x, y) => x.ProductCost.CompareTo(y.ProductCost));
+                        product.Reverse();
                     }
                     break;
             }
 
-           ListService.ItemsSource = products;
-            if (products.Count == 0)
+            ListProduct.ItemsSource = product;
+            if (product.Count == 0)
             {
                 MessageBox.Show("нет записей");
-                CountService.Text = ClassDBase.DB.Product.ToList().Count + "/" + ClassDBase.DB.Product.ToList().Count;
+                CountProduct.Text = ClassDBase.DB.Product.ToList().Count + "/" + ClassDBase.DB.Product.ToList().Count;
                 SearchName.Text = "";
                 Sorting.SelectedIndex = 0;
                 Filtering.SelectedIndex = 0;
 
             }
-            CountService.Text = products.Count + "/" + ClassDBase.DB.Product.ToList().Count;
+            CountProduct.Text = product.Count + "/" + ClassDBase.DB.Product.ToList().Count;
         }
         private void SearchName_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -136,11 +143,11 @@ namespace Stationery
             string index = mi.Uid;
             Product product = ClassDBase.DB.Product.FirstOrDefault(x => x.ProductArticleNumber == index);
             ClassDBase.products.Add(product);
-            //btnShowOrder.Visibility = Visibility.Visible;
+            ShowOrders.Visibility = Visibility.Visible;
         }
         private void ShowOrders_Click(object sender, RoutedEventArgs e)
         {
-            ShowOrder windowShowOrder = new ShowOrder();
+            ShowOrder windowShowOrder = new ShowOrder(user);
             windowShowOrder.ShowDialog();
            
             if (ClassDBase.products.Count == 0)

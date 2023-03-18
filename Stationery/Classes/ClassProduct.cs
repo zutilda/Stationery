@@ -27,7 +27,7 @@ namespace Stationery
 
             }
         }
-        public string price
+        public string Price
         {
             get
             {
@@ -43,7 +43,7 @@ namespace Stationery
                 }
             }
         }
-        public string cost
+        public string Cost
 
         {
             get
@@ -55,6 +55,44 @@ namespace Stationery
                 }
                 return "";
 
+            }
+        }
+        public double PriceOrder
+        {
+            get
+            {
+                if (ProductDiscountAmount != null)
+                {
+                    double b = (Convert.ToDouble(ProductCost) / 100) * (100 - ProductDiscountAmount.Value);
+                    return b;
+                }
+                else
+                {
+                    double a = Convert.ToDouble(ProductCost);
+                    return a;
+                }
+            }
+        }
+        public double CostOrder
+
+        {
+            get
+            {
+                if (ProductDiscountAmount != null)
+                {
+
+                    return Math.Round(Convert.ToDouble(ProductCost));
+                }
+
+                return 0;
+            }
+        }
+
+        public string Discount
+        {
+            get
+            {
+                return ProductDiscountAmount + "%";
             }
         }
     }

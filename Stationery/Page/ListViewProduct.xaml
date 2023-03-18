@@ -48,7 +48,7 @@
                 </StackPanel>
             </StackPanel>
         </StackPanel>
-        <ListView Grid.Row="3" Name="ListService" ScrollViewer.HorizontalScrollBarVisibility="Hidden" HorizontalContentAlignment="Stretch">
+        <ListView Grid.Row="3" Name="ListProduct" Height="300" ScrollViewer.HorizontalScrollBarVisibility="Hidden" HorizontalContentAlignment="Stretch">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border Style="{StaticResource BorderStyle}">
@@ -83,8 +83,8 @@
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="Цена:"/>
-                                            <TextBlock Name="Price" Text="{Binding price}" Style="{StaticResource TextList}"></TextBlock>
-                                            <TextBlock Name="Cost" Text="{Binding cost}" TextDecorations="Strikethrough" Style="{StaticResource TextList}"></TextBlock>
+                                            <TextBlock Name="Price" Text="{Binding Price}" Style="{StaticResource TextList}"></TextBlock>
+                                            <TextBlock Name="Cost" Text="{Binding Cost}" TextDecorations="Strikethrough" Style="{StaticResource TextList}"></TextBlock>
                                         </StackPanel>                                     
                                     </StackPanel>
                                 </Grid>
@@ -92,7 +92,7 @@
                             </Grid>
                             <Grid Grid.Column="2">
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Name="Discount" Text="{Binding ProductDiscountAmount}" Style="{StaticResource TextList}"></TextBlock>
+                                    <TextBlock Name="Discount" Text="{Binding Discount}" Style="{StaticResource TextList}"></TextBlock>
                                 </StackPanel>
                             </Grid>
                         </Grid>
@@ -101,7 +101,7 @@
             </ListView.ItemTemplate>
         </ListView>    
         <StackPanel Grid.Row="4" VerticalAlignment="Center" Orientation="Horizontal">
-            <TextBlock Name="CountService" Width="100"></TextBlock>
+            <TextBlock Name="CountProduct" Width="100"></TextBlock>
             <Button x:Name="ShowOrders" Click="ShowOrders_Click" Template="{StaticResource ButtonInElement}">Перейтик  заказу</Button>
         </StackPanel>
     </Grid>
