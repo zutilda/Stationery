@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Stationery"
         mc:Ignorable="d"
-        Title="Канцелярские принадлежности 'Пиши-стирай'" Height="450" Width="800" Icon="/image/icon.ico">
+        Title="Канцелярские принадлежности 'Пиши-стирай'" MinHeight="600" Width="800" Icon="/image/icon.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>

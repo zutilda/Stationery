@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Stationery"
         mc:Ignorable="d"
-        Title="Заказ" Height="450" Width="800" Icon="/image/icon.ico">
+        Title="Канцелярские принадлежности 'Пиши-стирай'" MinHeight="500" MinWidth="800" Icon="/image/icon.ico">
     <Window.Resources>
         <BitmapImage x:Key="Pictures" UriSource="/image/picture.png"/>
     </Window.Resources>
